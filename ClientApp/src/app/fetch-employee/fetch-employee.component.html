@@ -1,0 +1,34 @@
+<h1 class="text-md-center text-secondary">Company Employees</h1>
+
+<p *ngIf="loading$ | async"><em>Loading...</em></p>
+
+<p class="text-md-right m-4">
+    <a class="btn btn-outline-primary" [routerLink]="['/register-employee']">Add Employee</a>
+</p>
+
+  <table class="table table-striped table-hover ">
+    <thead  style="background-color: #84ceeb;">
+      <tr>
+        <th>Employee No</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Department</th>
+        <th>City</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of empList | async">
+        <td>{{ emp.employeeId }}</td>
+        <td>{{ emp.name }}</td>
+        <td>{{ emp.gender }}</td>
+        <td>{{ emp.department }}</td>
+        <td>{{ emp.city }}</td>
+        <td>
+        <td  class="text-md-right">
+          <a class="btn btn-outline-success m-2" [routerLink]="['/employee/edit/', emp.employeeId]">Edit</a>
+          <a class="btn btn-outline-danger m-2" [routerLink]="" (click)="delete(emp.employeeId)">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
